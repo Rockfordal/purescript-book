@@ -709,7 +709,7 @@ However, once a reference cell has been created by `newSTRef`, its region type i
 In fact, since `ST` is the only effect in our example, we can use `runST` in conjunction with `runPure` to turn `simulate` into a pure function:
 
 ```haskell
-simulate' :: Number -> Number -> Number -> Number
+simulate' :: Number -> Number -> Int -> Number
 simulate' x0 v0 time = runPure (runST (simulate x0 v0 time))
 ```
 
@@ -718,19 +718,19 @@ You can even try running this function in PSCi:
 ```text
 > import Main
 
-> simulate' 100.0 0.0 0.0
+> simulate' 100.0 0.0 0
 100.00
 
-> simulate' 100.0 0.0 1.0
+> simulate' 100.0 0.0 1
 95.10
 
-> simulate' 100.0 0.0 2.0
+> simulate' 100.0 0.0 2
 80.39
 
-> simulate' 100.0 0.0 3.0
+> simulate' 100.0 0.0 3
 55.87
 
-> simulate' 100.0 0.0 4.0
+> simulate' 100.0 0.0 4
 21.54
 ```
 
